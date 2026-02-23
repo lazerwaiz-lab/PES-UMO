@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pointage Genesis 8 - Black Edition</title>
+  <style>
+    :root {
+      --primary: #d35400; /* Orange mystère profond */
+      --primary-dark: #a04000;
+      --bg: #000000;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 35px;
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(255, 255, 255, 0.05);
+      width: 100%;
+      max-width: 420px;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h2 {
+      color: #000000;
+      font-size: 26px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .header .line {
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      margin: 10px auto;
+      border-radius: 2px;
+    }
+
+    label {
+      display: block;
+      margin: 18px 0 6px;
+      font-weight: 600;
+      color: #333333;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #eeeeee;
+      border-radius: 12px;
+      box-sizing: border-box;
+      font-size: 15px;
+      transition: all 0.3s;
+      background: #fafafa;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #000000;
+      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .phone-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .prefix {
+      width: 80px;
+      background: #eeeeee; /* Cadre passé en Gris */
+      text-align: center;
+      line-height: 48px;
+      border-radius: 12px;
+      font-weight: 700;
+      color: #333333; /* Texte noir sur gris */
+      border: 2px solid #dddddd;
+    }
+
+    .time-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .cam-btn {
+      background: #ffffff;
+      border: 2px dashed var(--primary);
+      padding: 25px;
+      text-align: center;
+      border-radius: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .cam-btn:hover {
+      background: #f5f5f5;
+      transform: scale(1.02);
+    }
+
+    .cam-btn input {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+    }
+
+    .status-text {
+      color: #000000;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 18px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 35px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .footer-agency {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 10px;
+      color: #666666;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="card">
+    <div class="header">
+      <h2>Fiche de présence</h2>
+      <div class="line"></div>
+    </div>
+
+    <form id="presenceForm">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="votre@email.com" required>
+
+      <label>Nom de l'extra</label>
+      <input type="text" name="nom" placeholder="Nom & Prénom" required>
+
+      <label>Mobile Money (Bénin)</label>
+      <div class="phone-row">
+        <div class="prefix">+229</div>
+        <input type="tel" name="telephone" placeholder="01XXXXXXXX" required>
+      </div>
+
+      <label>Mission</label>
+      <select name="mission" required>
+        <option value="" disabled selected>Choisir votre mission</option>
+        <option value="Barman">Barman</option>
+        <option value="Manutentionnaire">Manutentionnaire</option>
+        <option value="Serveur.se">Serveur.se</option>
+      </select>
+
+      <label>Plage horaire prévue</label>
+      <input type="text" name="plage_prevue" placeholder="Ex: 08h00 - 18h00" required>
+
+      <div class="time-grid">
+        <div>
+          <label>Heure d'arrivée</label>
+          <input type="time" name="arrivee" required>
+        </div>
+        <div>
+          <label>Heure de départ</label>
+          <input type="time" name="depart" required>
+        </div>
+      </div>
+
+      <label>Signature (Photo en temps réel)</label>
+      <div class="cam-btn" id="dropZone">
+        <span class="status-text" id="statusText">
+          <span style="font-size: 28px;">📷</span>
+          PRENDRE LA PHOTO
+        </span>
+        <input type="file" name="signature" accept="image/*" capture="environment" id="camInput" required>
+      </div>
+
+      <button type="submit" class="submit-btn" id="sub">VALIDER LE POINTAGE</button>
+    </form>
+
+    <div class="footer-agency">
+      GENESIS 8 MULTIMEDIA • Suivi en ligne
+    </div>
+  </div>
+
+  <script>
+    const camInput = document.getElementById('camInput');
+    camInput.onchange = () => {
+      document.getElementById('statusText').innerHTML = "<span style='font-size: 28px;'>✅</span> PHOTO ENREGISTRÉE";
+      document.getElementById('dropZone').style.borderColor = "#27ae60";
+      document.getElementById('statusText').style.color = "#27ae60";
+    };
+
+    document.getElementById('presenceForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('sub');
+      btn.innerText = "ENVOI EN COURS...";
+      btn.disabled = true;
+
+      const formData = new FormData(e.target);
+      const file = camInput.files[0];
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+      reader.onload = async () => {
+        const base64Image = reader.result.split(',')[1];
+        const payload = Object.fromEntries(formData.entries());
+        payload.signature = base64Image;
+
+        try {
+          // COLLE TON URL DE DÉPLOIEMENT CI-DESSOUS
+          await fetch('https://script.google.com/macros/s/AKfycbzO83UAjEgbW4eYDuNocqJ5LKQ9IWPfd8mIt6El_9on2mXHgqi1oHt4_Z4QCG_MKGslyw/exec', {
+            method: 'POST',
+            mode: 'no-cors', // Important pour Google Script
+            body: JSON.stringify(payload)
+          });
+
+          alert("Pointage validé avec succès !");
+          location.reload();
+        } catch (error) {
+          alert("Erreur d'envoi.");
+          btn.innerText = "VALIDER LE POINTAGE";
+          btn.disabled = false;
+        }
+      };
+    };
+  </script>
+</body>
+</html>
